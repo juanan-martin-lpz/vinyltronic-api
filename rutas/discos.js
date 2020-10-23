@@ -1,11 +1,10 @@
 const express = require('express');
-const app = express();
-const { v4: uuidv4 } = require('uuid');
+const router = express.Router();
 
 let Disco = require('../modelos/disco.js');
 
 
-app.get('/discos', (req, res) => {
+router.get('/discos', (req, res) => {
 
   Disco.find({})
     .exec()
@@ -21,7 +20,7 @@ app.get('/discos', (req, res) => {
     });
 });
 
-app.get('/discos/:id', (req, res) => {
+router.get('/discos/:id', (req, res) => {
 
   let id = req.params.id;
 
@@ -40,7 +39,7 @@ app.get('/discos/:id', (req, res) => {
 });
 
 
-app.get('/discos/grupo/:filtro', (req, res) => {
+router.get('/discos/grupo/:filtro', (req, res) => {
 
   let filtro = req.params.filtro;
 
@@ -59,7 +58,7 @@ app.get('/discos/grupo/:filtro', (req, res) => {
 
 });
 
-app.post('/discos', (req, res) => {
+router.post('/discos', (req, res) => {
 
   let body = req.body;
 
@@ -86,10 +85,9 @@ app.post('/discos', (req, res) => {
 });
 
 
-app.put('/discos/:id', (req, res) => {
+router.put('/discos/:id', (req, res) => {
 
   var id = req.params.id;
-
 
   var body = req.body;
 
@@ -107,7 +105,7 @@ app.put('/discos/:id', (req, res) => {
     });
 });
 
-app.delete('/discos/:id', (req, res) => {
+router.delete('/discos/:id', (req, res) => {
 
   var id = req.params.id;
 
@@ -128,4 +126,4 @@ app.delete('/discos/:id', (req, res) => {
 });
 
 
-module.exports = app;
+module.exports = router;
